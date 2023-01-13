@@ -1,6 +1,10 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+Notify.init({
+    position: 'center-top',
+});
 
 const todayDate = new Date();
 
@@ -29,6 +33,8 @@ flatpickr("#datetime-picker", options);
 btnStart.addEventListener('click', onStartClick);
 
 
+
+// position center - center
 function onStartClick() {
     let dayToEnd = 0;
     const IdInt = setInterval(
@@ -43,13 +49,14 @@ function onStartClick() {
             second.textContent = addLeadingZero(seconds);
 
         }, 1000); 
-    
+    Notify.success('It&#39;s the final countdown!!!');
            
-}
+};
 
 function selectedDatechecker(selectedDates) {
     if ((selectedDates[0].getTime() - todayDate.getTime()) < 0) {
-        alert("Please choose a date in the future");
+        Notify.failure('Please choose a date in the future');
+        // alert("Please choose a date in the future");
         return;
     }
     btnStart.disabled = false;
@@ -73,8 +80,10 @@ function convertMs(ms) {
     const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
     return { days, hours, minutes, seconds };
-}
+};
 
 function addLeadingZero(value) {
     return `${value}`.padStart(2, '0');
-}
+};
+
+
