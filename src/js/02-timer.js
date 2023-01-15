@@ -69,7 +69,7 @@ function onStartClick() {
 
         }, 1000); 
 
-    Notify.success('It&#39;s the final countdown!!!');
+    Notify.success('&#129304 It&#39;s the final countdown!!! &#129304');
            
 };
 
